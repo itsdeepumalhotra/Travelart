@@ -42,7 +42,7 @@
         android:textColor="#D2000000"
         android:transitionName="logo_text" />
     <TextView
-        android:id="@+id/slogan_name"
+        android:id="@+id/msgtxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#30475E"
@@ -54,33 +54,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
         android:orientation="vertical">
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+
+        <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        app:boxStrokeColor="#F5F5F5"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:hint="Username">
+            android:hint="Username">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:id="@+id/username"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password"
         android:padding="5dp"
         android:hint="Password"
-        app:passwordToggleEnabled="true"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        app:passwordToggleEnabled="true">
+        <!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:inputType="textPassword"
+            android:id="@+id/password"
             android:layout_height="wrap_content"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -105,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
-        android:id="@+id/go"
+        android:id="@+id/login"
         android:textSize="25sp"
         android:background="#30475E"
         android:layout_gravity="right"

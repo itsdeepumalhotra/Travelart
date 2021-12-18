@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RegisterActivity">
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,17 +37,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/aldrich"
         android:textStyle="bold"
-        android:text="First step to be a smart Traveller.!!"
+        android:text="Hello There, \nWelcome Back.!!"
         android:textSize="40sp"
         android:textColor="#D2000000"
-
         android:transitionName="logo_text" />
     <TextView
         android:id="@+id/slogan_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#30475E"
-        android:text="Register with TravelART"
+        android:text="Sign In to continue"
         android:padding="10dp"
         android:textStyle="bold"
         android:textSize="30sp"/>
@@ -55,79 +54,74 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:padding="10dp"
         android:orientation="vertical">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:clipToOutline="true"
+        android:hint="Username">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/Rusername"
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            android:padding="5dp">
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/Rpassword"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password"
+        android:padding="5dp"
+        android:hint="Password"
+        app:passwordToggleEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:padding="5dp"
-            app:passwordToggleEnabled="true">
+            android:inputType="textPassword"
+            android:layout_height="wrap_content"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/RconfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Confirm Password"
-            android:padding="5dp"
-            app:passwordToggleEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
+    </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/forgetPassword"
+        android:background="#F5F5F5"
+        android:layout_gravity="right"
+        android:elevation="0dp"
+        android:textColor="#30475E"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        android:text="Forget Password?"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
-        android:id="@+id/signUpBtn"
+        android:id="@+id/go"
         android:textSize="25sp"
         android:background="#30475E"
         android:layout_gravity="right"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:text="Sign UP"/>
+        android:text="GO"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:id="@+id/alreadyRegBtn"
+        android:id="@+id/registration"
         android:textSize="15sp"
         android:background="#F5F5F5"
         android:textColor="#30475E"
         android:textStyle="bold"
-        android:text="ALREADY REGISTERED? SIGN IN"/>
-
+        android:text="NEW USER? SIGN UP"/>
 
 
 
