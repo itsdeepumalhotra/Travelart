@@ -1,21 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <Button
-        android:id="@+id/button"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/travel_login" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/aclonica"
+            android:text="@string/app_name"
+            android:textColor="#FF6C60"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="30sp"
+            app:autoSizeMaxTextSize="50sp"
+            app:autoSizeStepGranularity="2sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/logo_name"
+        android:padding="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LogIn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.445"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.607"
-        tools:ignore="MissingConstraints" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:fontFamily="@font/aldrich"
+        android:textStyle="bold"
+        android:text="Hello There, \nWelcome Back.!!"
+        android:textSize="40sp"
+        android:textColor="#D2000000"
+
+        android:transitionName="logo_text" />
+    <TextView
+        android:id="@+id/slogan_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#30475E"
+        android:text="Sign In to continue"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:textSize="30sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:hint="Username">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password"
+        android:padding="5dp"
+        android:hint="Password"
+        app:passwordToggleEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:inputType="textPassword"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/forgetPassword"
+        android:background="#F5F5F5"
+        android:layout_gravity="right"
+        android:elevation="0dp"
+        android:textColor="#30475E"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        android:text="Forget Password?"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/go"
+        android:textSize="25sp"
+        android:background="#30475E"
+        android:layout_gravity="right"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:text="GO"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:id="@+id/registration"
+        android:textSize="15sp"
+        android:background="#F5F5F5"
+        android:textColor="#30475E"
+        android:textStyle="bold"
+        android:text="NEW USER? SIGN UP"/>
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
