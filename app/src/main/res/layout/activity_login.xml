@@ -40,7 +40,6 @@
         android:text="Hello There, \nWelcome Back.!!"
         android:textSize="40sp"
         android:textColor="#D2000000"
-
         android:transitionName="logo_text" />
     <TextView
         android:id="@+id/slogan_name"
@@ -61,6 +60,7 @@
         android:id="@+id/username"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
+        app:boxStrokeColor="#F5F5F5"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:hint="Username">
