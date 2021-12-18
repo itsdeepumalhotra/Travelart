@@ -21,9 +21,9 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
-        android:text="Welcome to \nTravelART"
+        android:text="TravelART"
         android:textColor="#30475E"
-        android:textSize="50sp"
+        android:textSize="70dp"
         android:textStyle="bold" />
 
     <TextView
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/aclonica"
         android:gravity="right"
-        android:text="- Travel Smart"
+        android:text="- Travelling is now SmART"
         android:padding="10dp"
         android:textColor="#F05454"
         android:textSize="30sp"
