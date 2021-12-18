@@ -1,6 +1,6 @@
 package com.example.travelart.api.responseModel;
 
-public class LoginResponseModel {
+public class ResponseModel {
     String status;
 
     public String getStatus() {
@@ -11,10 +11,10 @@ public class LoginResponseModel {
         this.status = status;
     }
 
-    public LoginResponseModel() {
+    public ResponseModel() {
     }
 
-    public LoginResponseModel(String status) {
+    public ResponseModel(String status) {
         this.status = status;
     }
 }

@@ -4,26 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.travelart.api.Controller;
-import com.example.travelart.api.responseModel.LoginResponseModel;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.travelart.api.responseModel.ResponseModel;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.sdsmdg.tastytoast.TastyToast;
-
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,15 +66,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void processLogin(String username,String password) {
-        Call<LoginResponseModel> call = Controller
+        Call<ResponseModel> call = Controller
                 .getInstance()
                 .getApi()
                 .verifyUser(username,password);
 
-        call.enqueue(new Callback<LoginResponseModel>() {
+        call.enqueue(new Callback<ResponseModel>() {
             @Override
-            public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
-                LoginResponseModel responseModel = response.body();
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                ResponseModel responseModel = response.body();
                 String output = responseModel.getStatus();
                 if (output.equals("error")){
                     TastyToast.makeText(getApplicationContext(),"Sorry, but.. Something's Wrong..!",TastyToast.LENGTH_SHORT, TastyToast.CONFUSING);
@@ -105,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
                 TastyToast.makeText(getApplicationContext(),"Enter Valid Details..!!",TastyToast.LENGTH_SHORT, TastyToast.ERROR);
             }
         });
