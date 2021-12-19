@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 gotoLogin();
             }
-        },1000);
+        },500);
 
 
     }
