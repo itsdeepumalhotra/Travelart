@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 ResponseModel responseModel = response.body();
                 String output = responseModel.getStatus();
                 if (output.equals("error")){
-                    TastyToast.makeText(getApplicationContext(),"Sorry, but.. Something's Wrong..!",TastyToast.LENGTH_SHORT, TastyToast.CONFUSING);
+                    TastyToast.makeText(getApplicationContext(),"Enter Valid Details..!",TastyToast.LENGTH_SHORT, TastyToast.CONFUSING);
 
                 }
                 if (output.equals("success")){
@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
-                TastyToast.makeText(getApplicationContext(),"Enter Valid Details..!!",TastyToast.LENGTH_SHORT, TastyToast.ERROR);
+                TastyToast.makeText(getApplicationContext(),"Sorry, but.. Something's Wrong..!!",TastyToast.LENGTH_SHORT, TastyToast.ERROR);
             }
         });
     }

@@ -12,13 +12,21 @@ import com.sdsmdg.tastytoast.TastyToast;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button logout;
+    Button logout,map;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         
         logout = findViewById(R.id.logout);
+        map = findViewById(R.id.map);
+
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoMapActivity();
+            }
+        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -27,6 +35,11 @@ public class HomeActivity extends AppCompatActivity {
         });
         
     }
+
+    private void gotoMapActivity() {
+        startActivity(new Intent(this, MapviewsActivity.class));
+    }
+
 
     private void logoutProcess() {
         SharedPreferences sharedPreferences = getSharedPreferences("credentials",MODE_PRIVATE);

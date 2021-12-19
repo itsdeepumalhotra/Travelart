@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void gotoLogin() {
-        Intent intent = new Intent(this, MapviewsActivity.class); // to be changed later from home to login TODO
+        Intent intent = new Intent(this, LoginActivity.class); // to be changed later from home to login TODO
         startActivity(intent);
         finish();
     }

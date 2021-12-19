@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Controller {
 
-     private static final String url = "http://192.168.42.62/api/";
+     private static final String url = "http://192.168.0.3/api/";
      private static Controller clientObject;
      private static Retrofit retrofit;
 
