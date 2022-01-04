@@ -48,30 +48,7 @@ public class MapviewsActivity extends AppCompatActivity implements OnMapReadyCal
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Gateway Institute of Engineering and Technology"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.typeofmap, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Change the map type based on the user's selection.
-        switch (item.getItemId()) {
-            case R.id.normal_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                return true;
-            case R.id.hybrid_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-                return true;
-            case R.id.satellite_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-                return true;
-            case R.id.terrain_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+
+
+
 }

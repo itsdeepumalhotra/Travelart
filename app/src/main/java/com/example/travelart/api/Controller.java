@@ -3,9 +3,9 @@ package com.example.travelart.api;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Controller {
+public class             Controller {
 
-     private static final String url = "http://192.168.0.3/api/";
+     private static final String url = "http://varsha-pc/api/";
      private static Controller clientObject;
      private static Retrofit retrofit;
 

@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("credentials",MODE_PRIVATE);
         if (sharedPreferences.contains("username")){
             startActivity(new Intent(this,HomeActivity.class));
+            finish();
         }
         else {
             TastyToast.makeText(getApplicationContext(),"Hey, Login Please..!",TastyToast.LENGTH_SHORT, TastyToast.WARNING);
