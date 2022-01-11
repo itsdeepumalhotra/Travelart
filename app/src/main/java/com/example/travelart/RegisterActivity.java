@@ -54,7 +54,6 @@ private Button registerBtn , gotoLoginBtn ;
             }
         });
 
-
     }
 
     private void registerProcess(String name, String pswd) {

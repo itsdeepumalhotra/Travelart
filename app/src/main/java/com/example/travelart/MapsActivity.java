@@ -1,41 +1,28 @@
 package com.example.travelart;
 
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
-import com.example.travelart.databinding.ActivityMapviewsBinding;
-import com.example.travelart.utils.Venue;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.example.travelart.databinding.ActivityMapsBinding;
 
-import java.util.ArrayList;
-
-public class MapviewsActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private ActivityMapviewsBinding binding;
-    ArrayList<Venue> venueArrayList;
+    private ActivityMapsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mapviews);
 
-
-        // try to get intent
-        Intent intent = getIntent();
-        venueArrayList = (ArrayList<Venue>) intent.getSerializableExtra("VENUE_LIST");
+        binding = ActivityMapsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -52,23 +39,13 @@ public class MapviewsActivity extends AppCompatActivity implements OnMapReadyCal
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        //////////////// adding marker for every venue ///////////////
-
-        for (int i = 0; i < venueArrayList.size(); i++) {
-            // getting data of each venue from array list
-            double latitude = venueArrayList.get(i).getLatitude();
-            double longitude = venueArrayList.get(i).getLongitude();
-            String name = venueArrayList.get(i).getName();
-            // now plotting it on map
-            LatLng venuePoint = new LatLng(latitude, longitude);
-            mMap.addMarker(new MarkerOptions().position(venuePoint).title(i + 1 + "." + name));
-            // moving camera //
-            if (i == 0)
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(venuePoint, 11));
-        }
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }

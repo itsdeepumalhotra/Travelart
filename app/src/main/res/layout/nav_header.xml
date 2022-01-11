@@ -3,13 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/navigation_header_container"
+    android:background="#FFFFFF"
     android:gravity="center"
     android:orientation="vertical">
 
+
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/person_icon"
+        android:layout_marginTop="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/img_profile"
         />
     <TextView
         android:id="@+id/showName"

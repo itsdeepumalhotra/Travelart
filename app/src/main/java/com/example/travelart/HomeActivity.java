@@ -25,6 +25,7 @@ import com.example.travelart.fragments.HomeFragment;
 import com.example.travelart.fragments.ProfileFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.sdsmdg.tastytoast.TastyToast;
+//import com.sdsmdg.tastytoast.TastyToast;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -102,7 +103,7 @@ public class HomeActivity extends AppCompatActivity {
 //        
     }
 
-    private void replaceFragment(Fragment fragment) {
+    public void replaceFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container,fragment)
                 .commit();

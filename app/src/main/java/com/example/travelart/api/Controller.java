@@ -3,9 +3,9 @@ package com.example.travelart.api;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class             Controller {
+public class   Controller {
 
-     private static final String url = "http://varsha-pc/api/";
+     private static final String url = "http://192.168.100.11/api/";
      private static Controller clientObject;
      private static Retrofit retrofit;
 
@@ -15,7 +15,6 @@ public class             Controller {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-
 
     //returns clientObject, if not made thn first it will create it then return it
     public static synchronized Controller getInstance() {

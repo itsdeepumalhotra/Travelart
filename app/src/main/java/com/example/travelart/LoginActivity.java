@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
-                TastyToast.makeText(getApplicationContext(),"Sorry, but.. Something's Wrong..!!",TastyToast.LENGTH_SHORT, TastyToast.ERROR);
+                TastyToast.makeText(getApplicationContext(),"Server is offline..!!",TastyToast.LENGTH_SHORT, TastyToast.ERROR);
             }
         });
     }
