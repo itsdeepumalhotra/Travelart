@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>venue_row_item.xml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #000080; font-weight: bold;}
+.s2 { color: #0000ff; font-weight: bold;}
+.s3 { color: #008000; font-weight: bold;}
+.s4 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+venue_row_item.xml</font>
+</center></td></tr></table>
+<pre>&lt;<span class="s1">LinearLayout </span><span class="s2">xmlns:android</span><span class="s3">=&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="s2">xmlns:tools</span><span class="s3">=&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="s2">xmlns:card_view</span><span class="s3">=&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+    <span class="s2">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+    <span class="s2">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+    <span class="s2">xmlns:app</span><span class="s3">=&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+    <span class="s2">android:gravity</span><span class="s3">=&quot;center_vertical&quot;</span>&gt;
+
+    <span class="s4">&lt;!-- A CardView that contains a TextView --&gt;</span>
+    &lt;<span class="s1">androidx.cardview.widget.CardView</span>
+        <span class="s2">android:id</span><span class="s3">=&quot;@+id/card_view_venue_category&quot;</span>
+        <span class="s2">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+        <span class="s2">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s2">app:cardElevation</span><span class="s3">=&quot;10dp&quot;</span>
+        <span class="s2">app:cardCornerRadius</span><span class="s3">=&quot;20dp&quot;</span>
+        <span class="s2">app:cardBackgroundColor</span><span class="s3">=&quot;#FF7979&quot;</span>
+        <span class="s2">app:cardMaxElevation</span><span class="s3">=&quot;12dp&quot;</span>
+        <span class="s2">app:cardPreventCornerOverlap</span><span class="s3">=&quot;true&quot;</span>
+        <span class="s2">app:cardUseCompatPadding</span><span class="s3">=&quot;true&quot;</span>&gt;
+
+        &lt;<span class="s1">ImageView</span>
+            <span class="s2">android:id</span><span class="s3">=&quot;@+id/venueCategoryImage&quot;</span>
+            <span class="s2">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+            <span class="s2">android:layout_height</span><span class="s3">=&quot;150dp&quot;</span>
+            <span class="s2">android:scaleType</span><span class="s3">=&quot;centerCrop&quot;</span>
+            <span class="s2">android:src</span><span class="s3">=&quot;@drawable/doctor&quot;</span>
+            /&gt;
+
+        &lt;<span class="s1">TextView</span>
+            <span class="s2">android:id</span><span class="s3">=&quot;@+id/venueCategory&quot;</span>
+            <span class="s2">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+            <span class="s2">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+            <span class="s2">android:layout_marginTop</span><span class="s3">=&quot;20dp&quot;</span>
+            <span class="s2">android:layout_marginBottom</span><span class="s3">=&quot;20dp&quot;</span>
+            <span class="s2">android:fontFamily</span><span class="s3">=&quot;@font/aldrich&quot;</span>
+            <span class="s2">android:gravity</span><span class="s3">=&quot;center&quot;</span>
+            <span class="s2">android:text</span><span class="s3">=&quot;Category Name&quot;</span>
+            <span class="s2">android:textColor</span><span class="s3">=&quot;#FFFFFF&quot;</span>
+            <span class="s2">android:textSize</span><span class="s3">=&quot;34sp&quot;</span>
+            <span class="s2">android:textStyle</span><span class="s3">=&quot;bold&quot; </span>/&gt;
+
+    &lt;/<span class="s1">androidx.cardview.widget.CardView</span>&gt;
+&lt;/<span class="s1">LinearLayout</span>&gt;</pre>
+</body>
+</html>

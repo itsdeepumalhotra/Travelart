@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>LoginActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+LoginActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.travelart;
+
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.content.SharedPreferences;
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.widget.Button;
+
+<span class="s0">import <a href="../../../com/example/travelart/api/Controller.java.html">com.example.travelart.api.Controller</a></span>;
+<span class="s0">import <a href="../../../com/example/travelart/api/responseModel/ResponseModel.java.html">com.example.travelart.api.responseModel.ResponseModel</a></span>;
+<span class="s0">import </span>com.google.android.material.textfield.TextInputEditText;
+<span class="s0">import </span>com.sdsmdg.tastytoast.TastyToast;
+
+<span class="s0">import </span>retrofit2.Call;
+<span class="s0">import </span>retrofit2.Callback;
+<span class="s0">import </span>retrofit2.Response;
+
+<span class="s0">public class </span>LoginActivity <span class="s0">extends </span>AppCompatActivity {
+
+    <span class="s0">private </span>TextInputEditText username , password;
+    <span class="s0">private </span>Button forgetBtn , login, gotoRegister;
+
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+         username = findViewById(R.id.username);
+         password = findViewById(R.id.password);
+         forgetBtn = findViewById(R.id.forgetPassword);
+         login = findViewById(R.id.login);
+         gotoRegister = findViewById(R.id.registration);
+
+
+         checkExistingUser();
+         
+         login.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+             @Override
+             <span class="s0">public void </span>onClick(View view) {
+                 String usrname = username.getText().toString();
+                 String pswd = password.getText().toString();
+                 processLogin(usrname,pswd);
+             }
+         });
+
+         <span class="s2">//TODO forgetBtn.setOnClickListener();</span>
+
+         gotoRegister.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+             @Override
+             <span class="s0">public void </span>onClick(View view) {
+                 gotoRegisterActivity();
+             }
+         });
+    }
+
+    <span class="s0">private void </span>checkExistingUser() {
+        SharedPreferences sharedPreferences = getSharedPreferences(<span class="s3">&quot;credentials&quot;</span>,MODE_PRIVATE);
+        <span class="s0">if </span>(sharedPreferences.contains(<span class="s3">&quot;username&quot;</span>)){
+            startActivity(<span class="s0">new </span>Intent(<span class="s0">this</span>,<a href="HomeActivity.java.html">HomeActivity</a>.<span class="s0">class</span>));
+            finish();
+        }
+        <span class="s0">else </span>{
+            TastyToast.makeText(getApplicationContext(),<span class="s3">&quot;Hey, Login Please..!&quot;</span>,TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+        }
+    }
+
+    <span class="s0">private void </span>processLogin(String username,String password) {
+        Call&lt;ResponseModel&gt; call = <a href="../../../com/example/travelart/api/Controller.java.html">Controller</a>
+                .getInstance()
+                .getApi()
+                .verifyUser(username,password);
+
+        call.enqueue(<span class="s0">new </span>Callback&lt;ResponseModel&gt;() {
+            @Override
+            <span class="s0">public void </span>onResponse(Call&lt;ResponseModel&gt; call, Response&lt;ResponseModel&gt; response) {
+                <a href="../../../com/example/travelart/api/responseModel/ResponseModel.java.html">ResponseModel</a> responseModel = response.body();
+                String output = responseModel.getStatus();
+                <span class="s0">if </span>(output.equals(<span class="s3">&quot;error&quot;</span>)){
+                    TastyToast.makeText(getApplicationContext(),<span class="s3">&quot;Enter Valid Details..!&quot;</span>,TastyToast.LENGTH_SHORT, TastyToast.CONFUSING);
+
+                }
+                <span class="s0">if </span>(output.equals(<span class="s3">&quot;success&quot;</span>)){
+                    SharedPreferences sharedPreferences = getSharedPreferences(<span class="s3">&quot;credentials&quot;</span>,MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(<span class="s3">&quot;username&quot;</span>,username);
+                    editor.putString(<span class="s3">&quot;password&quot;</span>,password);
+                    editor.apply();
+                    TastyToast.makeText(getApplicationContext(),<span class="s3">&quot;Logged In Successfully..!&quot;</span>,TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+                    startActivity(<span class="s0">new </span>Intent(getApplicationContext(),<a href="HomeActivity.java.html">HomeActivity</a>.<span class="s0">class</span>));
+                    finish();
+                }
+            }
+
+            @Override
+            <span class="s0">public void </span>onFailure(Call&lt;ResponseModel&gt; call, Throwable t) {
+                TastyToast.makeText(getApplicationContext(),<span class="s3">&quot;Server is offline..!!&quot;</span>,TastyToast.LENGTH_SHORT, TastyToast.ERROR);
+            }
+        });
+    }
+
+    <span class="s0">private void </span>gotoRegisterActivity() {
+        Intent intent = <span class="s0">new </span>Intent(<span class="s0">this</span>,<a href="RegisterActivity.java.html">RegisterActivity</a>.<span class="s0">class</span>);
+        startActivity(intent);
+        TastyToast.makeText(getApplicationContext(),<span class="s3">&quot;Details Please..!&quot;</span>,TastyToast.LENGTH_SHORT, TastyToast.DEFAULT);
+
+        finish();
+    }
+
+
+}</pre>
+</body>
+</html>

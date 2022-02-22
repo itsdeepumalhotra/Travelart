@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>HomeFragment.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #0000ff;}
+.s3 { color: #008000; font-weight: bold;}
+.s4 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+HomeFragment.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.travelart.fragments;
+
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.os.Bundle;
+
+<span class="s0">import </span>androidx.fragment.app.Fragment;
+<span class="s0">import </span>androidx.fragment.app.FragmentManager;
+
+<span class="s0">import </span>android.view.LayoutInflater;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.view.ViewGroup;
+<span class="s0">import </span>android.widget.ArrayAdapter;
+<span class="s0">import </span>android.widget.AutoCompleteTextView;
+<span class="s0">import </span>android.widget.Button;
+
+<span class="s0">import <a href="../../../../com/example/travelart/HomeActivity.java.html">com.example.travelart.HomeActivity</a></span>;
+<span class="s0">import </span>com.example.travelart.R;
+<span class="s0">import <a href="../../../../com/example/travelart/utils/Resources.java.html">com.example.travelart.utils.Resources</a></span>;
+<span class="s0">import </span>com.sdsmdg.tastytoast.TastyToast;
+
+
+<span class="s0">public class </span>HomeFragment <span class="s0">extends </span>Fragment {
+
+AutoCompleteTextView inputCityName;
+Button startBtn;
+
+String[] cities = <span class="s0">new <a href="../../../../com/example/travelart/utils/Resources.java.html">Resources</a></span>().getCities();
+    @Override
+    <span class="s0">public </span>View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, <span class="s0">false</span>);
+
+        inputCityName = view.findViewById(R.id.inputCity);
+        startBtn = view.findViewById(R.id.startBtn);
+
+
+        inputCityName.setAdapter(<span class="s0">new </span>ArrayAdapter(getActivity(), android.R.layout.select_dialog_item,cities));
+        inputCityName.setThreshold(<span class="s2">1</span>);
+
+        startBtn.setOnClickListener(view1 -&gt; {
+            String cityName = String.valueOf(inputCityName.getText());
+
+            <span class="s0">if </span>(cityName.isEmpty()){
+                TastyToast.makeText(getActivity().getApplicationContext(),<span class="s3">&quot;Please Enter a city&quot;</span>,TastyToast.LENGTH_LONG,TastyToast.INFO);
+            }
+            <span class="s0">else </span>{
+                Bundle bundle = <span class="s0">new </span>Bundle();
+                bundle.putString(<span class="s3">&quot;CITY_NAME&quot;</span>,cityName);
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container,<a href="ChooseVenueFragment.java.html">ChooseVenueFragment</a>.<span class="s0">class</span>,bundle).commit();
+<span class="s4">//                HomeActivity homeActivity = new HomeActivity();</span>
+<span class="s4">//                homeActivity.replaceFragment(new ChooseVenueFragment());</span>
+
+                <a href="ChooseVenueFragment.java.html">ChooseVenueFragment</a> fragobj = <span class="s0">new <a href="ChooseVenueFragment.java.html">ChooseVenueFragment</a></span>();
+                fragobj.setArguments(bundle);
+            }
+
+        });
+
+
+        <span class="s0">return </span>view;
+    }
+}</pre>
+</body>
+</html>

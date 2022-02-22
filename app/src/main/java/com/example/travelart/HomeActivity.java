@@ -64,10 +64,10 @@ public class HomeActivity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
-                    case R.id.profile :
-                        replaceFragment(new ProfileFragment());
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
+//                    case R.id.profile :
+//                        replaceFragment(new ProfileFragment());
+//                        drawerLayout.closeDrawer(GravityCompat.START);
+//                        break;
 
                     case R.id.contactus :
                         replaceFragment(new ContactUsFragment());

@@ -1,0 +1,287 @@
+<html>
+<head>
+<title>DisplayVenuesFragment.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #008000; font-weight: bold;}
+.s4 { color: #808080; font-weight: bold; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DisplayVenuesFragment.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.travelart.fragments;
+
+<span class="s0">import </span>android.app.AlertDialog;
+<span class="s0">import </span>android.app.ProgressDialog;
+<span class="s0">import </span>android.content.DialogInterface;
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.location.Location;
+<span class="s0">import </span>android.os.Bundle;
+
+<span class="s0">import </span>androidx.fragment.app.Fragment;
+<span class="s0">import </span>androidx.fragment.app.FragmentManager;
+<span class="s0">import </span>androidx.recyclerview.widget.LinearLayoutManager;
+<span class="s0">import </span>androidx.recyclerview.widget.RecyclerView;
+
+<span class="s0">import </span>android.os.Parcelable;
+<span class="s0">import </span>android.util.Log;
+<span class="s0">import </span>android.view.LayoutInflater;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.view.ViewGroup;
+<span class="s0">import </span>android.widget.ImageView;
+<span class="s0">import </span>android.widget.TextView;
+
+<span class="s0">import </span>com.android.volley.AuthFailureError;
+<span class="s0">import </span>com.android.volley.Request;
+<span class="s0">import </span>com.android.volley.RequestQueue;
+<span class="s0">import </span>com.android.volley.Response;
+<span class="s0">import </span>com.android.volley.VolleyError;
+<span class="s0">import </span>com.android.volley.toolbox.JsonObjectRequest;
+<span class="s0">import </span>com.android.volley.toolbox.Volley;
+<span class="s0">import <a href="../../../../com/example/travelart/MapsActivity.java.html">com.example.travelart.MapsActivity</a></span>;
+<span class="s0">import <a href="../../../../com/example/travelart/MapviewsActivity.java.html">com.example.travelart.MapviewsActivity</a></span>;
+<span class="s0">import </span>com.example.travelart.R;
+<span class="s0">import <a href="../../../../com/example/travelart/utils/ParseData.java.html">com.example.travelart.utils.ParseData</a></span>;
+<span class="s0">import <a href="../../../../com/example/travelart/utils/Venue.java.html">com.example.travelart.utils.Venue</a></span>;
+<span class="s0">import </span>com.sdsmdg.tastytoast.TastyToast;
+
+<span class="s0">import </span>org.json.JSONObject;
+
+<span class="s0">import </span>java.util.ArrayList;
+<span class="s0">import </span>java.util.HashMap;
+<span class="s0">import </span>java.util.Map;
+
+<span class="s0">public class </span>DisplayVenuesFragment <span class="s0">extends </span>Fragment {
+
+    ArrayList&lt;Venue&gt; venueArrayList;
+    <span class="s0">private </span>RecyclerView venues;
+    <span class="s0">private </span>ImageView mapIcon;
+    <span class="s0">private </span>String city, venueType;
+    CustomAdapterForEachPlace adapter;
+
+    @Override
+    <span class="s0">public </span>View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        <span class="s2">// Inflate the layout for this fragment</span>
+        View view = inflater.inflate(R.layout.fragment_display_venues, container, <span class="s0">false</span>);
+
+        TextView tvVenueType = view.findViewById(R.id.venueType);
+        venues = view.findViewById(R.id.rvVenueList);
+        mapIcon = view.findViewById(R.id.mapIcon);
+
+        Bundle bundle = getArguments();
+        <span class="s0">if </span>(bundle !=<span class="s0">null</span>){
+            venueType = bundle.getString(<span class="s3">&quot;VENUE_TYPE&quot;</span>);
+            city = bundle.getString(<span class="s3">&quot;CITY_NAME&quot;</span>);
+            tvVenueType.setText(city.toUpperCase() + <span class="s3">&quot; &quot; </span>+ venueType.toUpperCase());
+        }
+
+        setVenues();
+
+
+
+<span class="s2">//        mapIcon.setOnClickListener(new View.OnClickListener() {</span>
+<span class="s2">//            @Override</span>
+<span class="s2">//            public void onClick(View view) {</span>
+<span class="s2">//</span>
+<span class="s2">////                Bundle bundle = new Bundle();</span>
+<span class="s2">////                bundle.putSerializable(&quot;VENUE_LIST&quot;,venueArrayList);</span>
+<span class="s2">////                FragmentManager fragmentManager = getFragmentManager();</span>
+<span class="s2">////                fragmentManager.beginTransaction().replace(R.id.fragment_container, Map.class, bundle).addToBackStack(null).commit();</span>
+<span class="s2">////</span>
+<span class="s2">//</span>
+<span class="s2">//                Intent intent = new Intent(getContext(), MapviewsActivity.class);</span>
+<span class="s2">////                passing venue list</span>
+<span class="s2">//                intent.putExtra(&quot;VENUE_LIST&quot;, venueArrayList);</span>
+<span class="s2">//                //</span>
+<span class="s2">//                startActivity(intent);</span>
+<span class="s2">//                TastyToast.makeText(getContext(), &quot;Goto MAP&quot;, TastyToast.LENGTH_LONG, TastyToast.CONFUSING);</span>
+<span class="s2">//            }</span>
+<span class="s2">//</span>
+<span class="s2">//        });</span>
+
+
+        <span class="s0">return </span>view;
+    }
+
+    String getUrl() {
+
+        String domain = <span class="s3">&quot;https://api.foursquare.com/v3/places/search?&amp;near=&quot;</span>;
+        String url = domain + city
+                + <span class="s3">&quot;&amp;query=&quot; </span>+ venueType
+                + <span class="s3">&quot;&amp;limit=50&quot;</span>;
+        Log.d(<span class="s3">&quot;url&quot;</span>, url);
+
+        <span class="s0">return </span>url;
+    }
+
+    <span class="s0">private void </span>setVenues(){
+
+        <span class="s2">//////////////// Progress Bar ////////////////</span>
+        ProgressDialog progressDialog = <span class="s0">new </span>ProgressDialog(getContext());
+        progressDialog.setMessage(<span class="s3">&quot;Loading Venues...&quot;</span>);
+        progressDialog.show();
+        <span class="s2">//////////////// Progress Bar started/////////////////</span>
+
+        String url = getUrl();
+
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+
+        JsonObjectRequest jsonObjectRequest = <span class="s0">new </span>JsonObjectRequest
+                (Request.Method.GET, url, <span class="s0">null</span>, <span class="s0">new </span>Response.Listener&lt;JSONObject&gt;() {
+
+                    @Override
+                    <span class="s0">public void </span>onResponse(JSONObject response) {
+                        <span class="s2">/* stop Progress Bar */</span>
+                        Log.d(<span class="s3">&quot;myurl&quot;</span>, response.toString());
+                        progressDialog.hide();
+
+                        <a href="../../../../com/example/travelart/utils/ParseData.java.html">ParseData</a> parseData = <span class="s0">new <a href="../../../../com/example/travelart/utils/ParseData.java.html">ParseData</a></span>(response);
+                        venueArrayList = parseData.getVenueList();
+
+                        adapter = <span class="s0">new </span>CustomAdapterForEachPlace(venueArrayList);
+                        venues.setLayoutManager(<span class="s0">new </span>LinearLayoutManager(getContext()));
+                        venues.setAdapter(adapter);
+                        adapter.setOnItemClickListener(
+                                (position, view) -&gt; {
+                                    Intent intent = <span class="s0">new </span>Intent(getContext(), <a href="../../../../com/example/travelart/MapsActivity.java.html">MapsActivity</a>.<span class="s0">class</span>);
+                                    intent.putExtra(<span class="s3">&quot;VENUE_LIST&quot;</span>, venueArrayList);
+
+                                    startActivity(intent);
+                                    TastyToast.makeText(getContext(), <span class="s3">&quot;Goto MAP&quot;</span>, TastyToast.LENGTH_LONG, TastyToast.CONFUSING);
+
+                                }
+                        );
+<span class="s2">//</span>
+<span class="s2">//</span>
+
+                    }
+                }, error -&gt; {
+                    <span class="s2">/* stop Progress Bar */</span>
+                    progressDialog.hide();
+                    <span class="s2">////////// Show Alert Dialog //////////</span>
+                    AlertDialog alertDialog = <span class="s0">new </span>AlertDialog.Builder(getContext())
+                            .setTitle(<span class="s3">&quot;Alert&quot;</span>)
+                            .setTitle(<span class="s3">&quot;Unexpected error occurred !!!&quot;</span>)
+                            .setNeutralButton(<span class="s3">&quot;OK&quot;</span>, <span class="s0">new </span>DialogInterface.OnClickListener() {
+                                @Override
+                                <span class="s0">public void </span>onClick(DialogInterface dialogInterface, <span class="s0">int </span>i) {
+                                    <span class="s2">///////// close this activity //////////</span>
+                                }
+                            })
+                            .show();
+                })
+
+        {
+            @Override
+            <span class="s0">public </span>Map&lt;String, String&gt; getHeaders() <span class="s0">throws </span>AuthFailureError {
+                Map&lt;String, String&gt; params = <span class="s0">new </span>HashMap&lt;String, String&gt;();
+                params.put(<span class="s3">&quot;Authorization&quot;</span>, getResources().getString(R.string.AUTH_ID));
+                <span class="s0">return </span>params;
+            }
+        };
+
+        <span class="s2">// Add the request to the RequestQueue.</span>
+        queue.add(jsonObjectRequest);
+
+    }
+
+}
+
+<span class="s0">class </span>CustomAdapterForEachPlace <span class="s0">extends </span>RecyclerView.Adapter&lt;CustomAdapterForEachPlace.ViewHolder&gt;  {
+
+    <span class="s0">private </span>ArrayList&lt;Venue&gt; venueList;
+    <span class="s0">private static </span>CustomAdapterForEachPlace.ClickListener clickListener;
+
+
+
+
+    <span class="s2">/**</span>
+     <span class="s2">* Provide a reference to the type of views that you are using</span>
+     <span class="s2">* (custom ViewHolder).</span>
+     <span class="s2">*/</span>
+    <span class="s0">public static class </span>ViewHolder <span class="s0">extends </span>RecyclerView.ViewHolder <span class="s0">implements </span>View.OnClickListener {
+        <span class="s0">private final </span>TextView textViewName, textViewAddress;
+
+        <span class="s0">public </span>ViewHolder(View view) {
+            <span class="s0">super</span>(view);
+            <span class="s2">// Define click listener for the ViewHolder's View</span>
+
+            textViewName = (TextView) view.findViewById(R.id.VenueTypeName);
+            textViewAddress = (TextView) view.findViewById(R.id.address);
+
+            view.setOnClickListener(<span class="s0">this</span>);
+
+        }
+
+        <span class="s0">public </span>TextView getTextViewName() {
+            <span class="s0">return </span>textViewName;
+        }
+        <span class="s0">public </span>TextView getTextViewAddress(){
+            <span class="s0">return </span>textViewAddress;
+        }
+
+        @Override
+        <span class="s0">public void </span>onClick(View view) {
+            clickListener.onItemClick(getAdapterPosition(), view);
+
+        }
+
+
+    }
+
+    <span class="s0">public interface </span>ClickListener{
+        <span class="s0">void </span>onItemClick(<span class="s0">int </span>position, View view);
+    }
+
+    <span class="s0">public void </span>setOnItemClickListener(CustomAdapterForEachPlace.ClickListener clickListener){
+        CustomAdapterForEachPlace.clickListener = clickListener;
+    }
+
+
+    <span class="s2">/**</span>
+     <span class="s2">* Initialize the dataset of the Adapter.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s4">@param </span><span class="s2">dataSet String[] containing the data to populate views to be used</span>
+     <span class="s2">* by RecyclerView.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public </span>CustomAdapterForEachPlace(ArrayList&lt;Venue&gt; dataSet) {
+        venueList = dataSet;
+    }
+
+    <span class="s2">// Create new views (invoked by the layout manager)</span>
+    @Override
+    <span class="s0">public </span>ViewHolder onCreateViewHolder(ViewGroup viewGroup, <span class="s0">int </span>viewType) {
+        <span class="s2">// Create a new view, which defines the UI of the list item</span>
+        View view = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.venue_type_row_item, viewGroup, <span class="s0">false</span>);
+
+        <span class="s0">return new </span>ViewHolder(view);
+    }
+
+    <span class="s2">// Replace the contents of a view (invoked by the layout manager)</span>
+    @Override
+    <span class="s0">public void </span>onBindViewHolder(ViewHolder viewHolder, <span class="s0">final int </span>position) {
+
+        <span class="s2">// Get element from your dataset at this position and replace the</span>
+        <span class="s2">// contents of the view with that element</span>
+        viewHolder.getTextViewName().setText(venueList.get(position).getName());
+        viewHolder.getTextViewAddress().setText(venueList.get(position).getAddress());
+    }
+
+    <span class="s2">// Return the size of your dataset (invoked by the layout manager)</span>
+    @Override
+    <span class="s0">public int </span>getItemCount() {
+        <span class="s0">return </span>venueList.size();
+    }
+}
+</pre>
+</body>
+</html>

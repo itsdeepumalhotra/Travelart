@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>Venue.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #808080; font-weight: bold; font-style: italic;}
+.s4 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Venue.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.travelart.utils;
+
+
+<span class="s0">import </span>org.json.JSONException;
+<span class="s0">import </span>org.json.JSONObject;
+
+<span class="s0">import </span>java.io.Serializable;
+
+<span class="s0">public class </span>Venue <span class="s0">implements </span>Serializable {
+
+    <span class="s0">private transient </span>JSONObject place;
+
+    <span class="s0">private </span>String name;
+    <span class="s0">private </span>String address;
+    <span class="s0">private double </span>latitude;
+    <span class="s0">private double </span>longitude;
+
+    <span class="s2">/**</span>
+     <span class="s2">* Constructor that take JSONObject place and get data from it</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">place</span>
+     <span class="s2">*/</span>
+    Venue(JSONObject place){
+        <span class="s0">this</span>.place = place;
+        setName();
+        setAddress();
+        setLatitude();
+        setLongitude();
+    }
+
+    <span class="s2">/**</span>
+     <span class="s2">* Setter Functions</span>
+     <span class="s2">*/</span>
+    <span class="s0">private void </span>setName(){
+        <span class="s0">try </span>{
+            name = place.getString(<span class="s4">&quot;name&quot;</span>);
+        } <span class="s0">catch </span>(JSONException e) {
+            name = <span class="s4">&quot; &quot;</span>;
+            e.printStackTrace();
+        }
+    }
+
+    <span class="s0">private void </span>setLatitude(){
+        <span class="s0">try </span>{
+            latitude = place.getJSONObject(<span class="s4">&quot;geocodes&quot;</span>).getJSONObject(<span class="s4">&quot;main&quot;</span>).getDouble(<span class="s4">&quot;latitude&quot;</span>);
+        } <span class="s0">catch </span>(JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    <span class="s0">private void </span>setLongitude(){
+        <span class="s0">try </span>{
+            longitude = place.getJSONObject(<span class="s4">&quot;geocodes&quot;</span>).getJSONObject(<span class="s4">&quot;main&quot;</span>).getDouble(<span class="s4">&quot;longitude&quot;</span>);
+        } <span class="s0">catch </span>(JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    <span class="s0">private void </span>setAddress() {
+        String address = <span class="s4">&quot;&quot;</span>;
+
+        <span class="s0">try </span>{
+            JSONObject location = place.getJSONObject(<span class="s4">&quot;location&quot;</span>);
+            <span class="s2">//////////////Local address//////////////////</span>
+            <span class="s0">try </span>{
+                address += location.getString(<span class="s4">&quot;address&quot;</span>) + <span class="s4">&quot; &quot;</span>;
+            } <span class="s0">catch </span>(Exception e){ e.printStackTrace(); }
+            <span class="s2">///////////////// city ////////////////////</span>
+            <span class="s0">try</span>{
+                address += location.getString(<span class="s4">&quot;locality&quot;</span>) + <span class="s4">&quot; &quot;</span>;
+            } <span class="s0">catch </span>(Exception e) { e.printStackTrace(); }
+            <span class="s2">///////////////// postal Code ///////////////////</span>
+            <span class="s0">try</span>{
+                address += location.getString(<span class="s4">&quot;postcode&quot;</span>);
+            } <span class="s0">catch </span>(Exception e) { e.printStackTrace(); }
+        } <span class="s0">catch </span>(Exception e){
+            e.printStackTrace();
+        }
+        <span class="s0">this</span>.address = address; <span class="s2">// finally setting address</span>
+    }
+
+    <span class="s2">/**</span>
+     <span class="s2">* getter functions</span>
+     <span class="s2">*/</span>
+    <span class="s0">public </span>String getName() {
+        <span class="s0">return </span>name;
+    }
+
+    <span class="s0">public </span>String getAddress() {
+        <span class="s0">return </span>address;
+    }
+
+    <span class="s0">public double </span>getLatitude() {
+        <span class="s0">return </span>latitude;
+    }
+
+    <span class="s0">public double </span>getLongitude() {
+        <span class="s0">return </span>longitude;
+    }
+
+}
+</pre>
+</body>
+</html>

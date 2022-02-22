@@ -18,7 +18,7 @@
         android:id="@+id/showName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="VARSHA SHARMA"
+        android:text="WELCOME"
         android:fontFamily="@font/aclonica"
         android:textSize="20sp"
         android:layout_gravity="center"

@@ -47,7 +47,7 @@ String[] cities = new Resources().getCities();
                 Bundle bundle = new Bundle();
                 bundle.putString("CITY_NAME",cityName);
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.fragment_container,ChooseVenueFragment.class,bundle).commit();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container,ChooseVenueFragment.class,bundle).addToBackStack(null).commit();
 //                HomeActivity homeActivity = new HomeActivity();
 //                homeActivity.replaceFragment(new ChooseVenueFragment());
 

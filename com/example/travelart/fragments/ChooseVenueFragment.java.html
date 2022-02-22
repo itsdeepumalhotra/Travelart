@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>ChooseVenueFragment.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ChooseVenueFragment.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.travelart.fragments;
+
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.os.Bundle;
+
+<span class="s0">import </span>androidx.fragment.app.Fragment;
+<span class="s0">import </span>androidx.fragment.app.FragmentManager;
+<span class="s0">import </span>androidx.recyclerview.widget.LinearLayoutManager;
+<span class="s0">import </span>androidx.recyclerview.widget.RecyclerView;
+
+<span class="s0">import </span>android.util.Pair;
+<span class="s0">import </span>android.view.LayoutInflater;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.view.ViewGroup;
+<span class="s0">import </span>android.widget.TextView;
+<span class="s0">import </span>android.widget.Toast;
+
+<span class="s0">import </span>com.example.travelart.R;
+<span class="s0">import <a href="../../../../com/example/travelart/adapters/VenueAdapter.java.html">com.example.travelart.adapters.VenueAdapter</a></span>;
+
+<span class="s0">import </span>java.util.ArrayList;
+
+<span class="s0">public class </span>ChooseVenueFragment <span class="s0">extends </span>Fragment {
+
+    @Override
+    <span class="s0">public </span>View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        <span class="s2">// Inflate the layout for this fragment</span>
+        View view = inflater.inflate(R.layout.fragment_choose_venue, container, <span class="s0">false</span>);
+
+        String cityName = getArguments().getString(<span class="s3">&quot;CITY_NAME&quot;</span>);
+        Toast.makeText(getContext(), cityName, Toast.LENGTH_SHORT).show();
+
+        RecyclerView rvVenueCategory = view.findViewById(R.id.rvVenueCategory);
+        <a href="../../../../com/example/travelart/adapters/VenueAdapter.java.html">VenueAdapter</a> adapter = <span class="s0">new <a href="../../../../com/example/travelart/adapters/VenueAdapter.java.html">VenueAdapter</a></span>(getCategoryData());
+
+        rvVenueCategory.setLayoutManager(<span class="s0">new </span>LinearLayoutManager(getContext()));
+        rvVenueCategory.setAdapter(adapter);
+
+
+        <span class="s2">//////////////// on Clicking Type of Venue (eg. Market)////////////////////</span>
+        adapter.setOnItemClickListener(<span class="s0">new <a href="../../../../com/example/travelart/adapters/VenueAdapter.java.html">VenueAdapter.ClickListener</a></span>(){
+            @Override
+            <span class="s0">public void </span>onItemClick(<span class="s0">int </span>position, View view) {
+                String text = ((TextView) view.findViewById(R.id.venueCategory)).getText().toString();
+                Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+
+                Bundle bundle = <span class="s0">new </span>Bundle();
+                bundle.putString(<span class="s3">&quot;VENUE_TYPE&quot;</span>,text);
+                bundle.putString(<span class="s3">&quot;CITY_NAME&quot;</span>,cityName);
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container,<a href="DisplayVenuesFragment.java.html">DisplayVenuesFragment</a>.<span class="s0">class</span>,bundle).addToBackStack(<span class="s0">null</span>).commit();
+
+            }
+        });
+
+
+        <span class="s0">return </span>view;
+    }
+
+    ArrayList&lt;Pair&lt;String, Integer&gt;&gt; getCategoryData(){
+        ArrayList&lt;Pair&lt;String, Integer&gt;&gt; list = <span class="s0">new </span>ArrayList&lt;&gt;();
+
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Market&quot;</span>, R.drawable.market));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Hospital&quot;</span>, R.drawable.doctor));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Historic Site&quot;</span>, R.drawable.historic_site));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Cinema&quot;</span>, R.drawable.movie_theater));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Museum&quot;</span>, R.drawable.museum));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Stadium&quot;</span>, R.drawable.stadium));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Water Park&quot;</span>, R.drawable.water_park));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Zoo&quot;</span>, R.drawable.zoo));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;College&quot;</span>, R.drawable.college));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Food&quot;</span>, R.drawable.food));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Cafe&quot;</span>, R.drawable.cafe));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Night Life Spot&quot;</span>, R.drawable.night_life_spot));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Public Park&quot;</span>, R.drawable.park));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Rivers&quot;</span>, R.drawable.river));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Police&quot;</span>, R.drawable.police));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Government Building&quot;</span>, R.drawable.government_building));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Temple&quot;</span>, R.drawable.spiritual_site));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Shopping Mall&quot;</span>, R.drawable.shopping_mall));
+        list.add(<span class="s0">new </span>Pair&lt;&gt;(<span class="s3">&quot;Transport&quot;</span>, R.drawable.travel_and_transport));
+
+        <span class="s0">return </span>list;
+    }
+
+}
+
+</pre>
+</body>
+</html>

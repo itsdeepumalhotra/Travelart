@@ -1,0 +1,113 @@
+<html>
+<head>
+<title>RegisterActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+RegisterActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.travelart;
+
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.content.SharedPreferences;
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.widget.Button;
+
+<span class="s0">import <a href="../../../com/example/travelart/api/Controller.java.html">com.example.travelart.api.Controller</a></span>;
+<span class="s0">import <a href="../../../com/example/travelart/api/responseModel/ResponseModel.java.html">com.example.travelart.api.responseModel.ResponseModel</a></span>;
+<span class="s0">import </span>com.google.android.material.textfield.TextInputEditText;
+<span class="s0">import </span>com.sdsmdg.tastytoast.TastyToast;
+
+<span class="s0">import </span>retrofit2.Call;
+<span class="s0">import </span>retrofit2.Callback;
+<span class="s0">import </span>retrofit2.Response;
+
+<span class="s0">public class </span>RegisterActivity <span class="s0">extends </span>AppCompatActivity {
+<span class="s0">private </span>TextInputEditText username, password, confirmpassword;
+<span class="s0">private </span>Button registerBtn , gotoLoginBtn ;
+
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_signup);
+
+        username = findViewById(R.id.Rusername);
+        password = findViewById(R.id.Rpassword);
+        confirmpassword = findViewById(R.id.RconfirmPassword);
+        registerBtn = findViewById(R.id.signUpBtn);
+        gotoLoginBtn = findViewById(R.id.alreadyRegBtn);
+
+        registerBtn.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View view) {
+                String name = username.getText().toString();
+                String pswd = password.getText().toString();
+                String cnfmPswd = confirmpassword.getText().toString();
+                <span class="s0">if </span>(pswd.equals(cnfmPswd)){
+                    registerProcess(name,pswd);
+                }
+                <span class="s0">else </span>{
+                    TastyToast.makeText(getApplicationContext(),<span class="s2">&quot;Password do not match</span><span class="s0">\n</span><span class="s2">Try Again&quot;</span>,TastyToast.LENGTH_LONG,TastyToast.WARNING);
+                }
+            }
+        });
+
+        gotoLoginBtn.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View view) {
+                gotoLoginActivity();
+            }
+        });
+
+    }
+
+    <span class="s0">private void </span>registerProcess(String name, String pswd) {
+        Call&lt;ResponseModel&gt; call = <a href="../../../com/example/travelart/api/Controller.java.html">Controller</a>
+                .getInstance()
+                .getApi()
+                .insertUser(name,pswd);
+
+        call.enqueue(<span class="s0">new </span>Callback&lt;ResponseModel&gt;() {
+            @Override
+            <span class="s0">public void </span>onResponse(Call&lt;ResponseModel&gt; call, Response&lt;ResponseModel&gt; response) {
+                <a href="../../../com/example/travelart/api/responseModel/ResponseModel.java.html">ResponseModel</a> responseModel = response.body();
+                String output = responseModel.getStatus();
+                <span class="s0">if </span>(output.equals(<span class="s2">&quot;error&quot;</span>)){
+                    TastyToast.makeText(getApplicationContext(),<span class="s2">&quot;Unable to register..!&quot;</span>,TastyToast.LENGTH_SHORT, TastyToast.ERROR);
+
+                }
+                <span class="s0">if </span>(output.equals(<span class="s2">&quot;success&quot;</span>)){
+                    TastyToast.makeText(getApplicationContext(),<span class="s2">&quot;Registered Successfully..!&quot;</span>,TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+                    startActivity(<span class="s0">new </span>Intent(getApplicationContext(),<a href="LoginActivity.java.html">LoginActivity</a>.<span class="s0">class</span>));
+                    finish();
+                }
+            }
+
+            @Override
+            <span class="s0">public void </span>onFailure(Call&lt;ResponseModel&gt; call, Throwable t) {
+                TastyToast.makeText(getApplicationContext(),<span class="s2">&quot;Sorry, but.. Something's Wrong..!&quot;</span>,TastyToast.LENGTH_SHORT, TastyToast.CONFUSING);
+
+            }
+        });
+
+
+    }
+
+    <span class="s0">private void </span>gotoLoginActivity() {
+        startActivity(<span class="s0">new </span>Intent(<span class="s0">this</span>, <a href="LoginActivity.java.html">LoginActivity</a>.<span class="s0">class</span>));
+        finish();
+    }
+}</pre>
+</body>
+</html>

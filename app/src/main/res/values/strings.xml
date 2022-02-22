@@ -4,7 +4,6 @@
     <string name="open">Open</string>
     <string name="close">CLose</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_city_name">Enter City Name</string>
     <string name="text_city_input">Enter here..</string>
     <string name="start_btn">Let\'s Begin</string>
@@ -12,8 +11,7 @@
 
     <!--  Foursquare API auth Id  -->
     <string name="AUTH_ID">fsq3mUfmDsZ5YsoUoVygb1mwmfHMO6ujvMimZEZBgcr2bzU=</string>
-    <string name="title_activity_location">Map</string>
-    <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_maps">Map Activity</string>
 
 
     <!--<string-array name="cities">-->

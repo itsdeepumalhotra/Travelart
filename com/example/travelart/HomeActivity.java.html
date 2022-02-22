@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>HomeActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+HomeActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.travelart;
+
+<span class="s0">import </span>androidx.annotation.NonNull;
+<span class="s0">import </span>androidx.appcompat.app.ActionBarDrawerToggle;
+<span class="s0">import </span>androidx.appcompat.app.AlertDialog;
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+<span class="s0">import </span>androidx.appcompat.widget.Toolbar;
+<span class="s0">import </span>androidx.core.view.GravityCompat;
+<span class="s0">import </span>androidx.drawerlayout.widget.DrawerLayout;
+<span class="s0">import </span>androidx.fragment.app.Fragment;
+<span class="s0">import </span>androidx.fragment.app.FragmentContainer;
+
+<span class="s0">import </span>android.content.DialogInterface;
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.content.SharedPreferences;
+<span class="s0">import </span>android.graphics.drawable.DrawableWrapper;
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.view.MenuItem;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.widget.Button;
+<span class="s0">import </span>android.widget.Toast;
+
+<span class="s0">import <a href="../../../com/example/travelart/fragments/ContactUsFragment.java.html">com.example.travelart.fragments.ContactUsFragment</a></span>;
+<span class="s0">import <a href="../../../com/example/travelart/fragments/HomeFragment.java.html">com.example.travelart.fragments.HomeFragment</a></span>;
+<span class="s0">import <a href="../../../com/example/travelart/fragments/ProfileFragment.java.html">com.example.travelart.fragments.ProfileFragment</a></span>;
+<span class="s0">import </span>com.google.android.material.navigation.NavigationView;
+<span class="s0">import </span>com.sdsmdg.tastytoast.TastyToast;
+<span class="s2">//import com.sdsmdg.tastytoast.TastyToast;</span>
+
+<span class="s0">public class </span>HomeActivity <span class="s0">extends </span>AppCompatActivity {
+
+    NavigationView navigationView;
+    ActionBarDrawerToggle toggle;
+    DrawerLayout drawerLayout;
+    Toolbar toolbar;
+    View fragmentContainer;
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        fragmentContainer = findViewById(R.id.fragment_container);
+        navigationView = findViewById(R.id.navmenu);
+        drawerLayout = findViewById(R.id.drawerLayout);
+
+        toggle = <span class="s0">new </span>ActionBarDrawerToggle(<span class="s0">this</span>,drawerLayout,toolbar,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        Fragment fragment = <span class="s0">new <a href="../../../com/example/travelart/fragments/HomeFragment.java.html">HomeFragment</a></span>();
+        replaceFragment(fragment);
+
+
+        navigationView.setNavigationItemSelectedListener(<span class="s0">new </span>NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            <span class="s0">public boolean </span>onNavigationItemSelected(@NonNull MenuItem item) {
+
+                <span class="s0">switch </span>(item.getItemId()){
+                    <span class="s0">case </span>R.id.home:
+                        replaceFragment(<span class="s0">new <a href="../../../com/example/travelart/fragments/HomeFragment.java.html">HomeFragment</a></span>());
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        <span class="s0">break</span>;
+
+                    <span class="s0">case </span>R.id.profile :
+                        replaceFragment(<span class="s0">new <a href="../../../com/example/travelart/fragments/ProfileFragment.java.html">ProfileFragment</a></span>());
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        <span class="s0">break</span>;
+
+                    <span class="s0">case </span>R.id.contactus :
+                        replaceFragment(<span class="s0">new <a href="../../../com/example/travelart/fragments/ContactUsFragment.java.html">ContactUsFragment</a></span>());
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        <span class="s0">break</span>;
+
+                    <span class="s0">case </span>R.id.logout :
+                        AlertDialog.Builder builder = <span class="s0">new </span>AlertDialog.Builder(HomeActivity.<span class="s0">this</span>);
+                        builder.setMessage(<span class="s3">&quot;LEAVING SO SOON..??&quot;</span>);
+                        builder.setTitle(<span class="s3">&quot;Just Checking&quot;</span>);
+                        builder.setCancelable(<span class="s0">false</span>);
+                        builder.setPositiveButton(<span class="s3">&quot;Yes!&quot;</span>, <span class="s0">new </span>DialogInterface.OnClickListener() {
+                            @Override
+                            <span class="s0">public void </span>onClick(DialogInterface dialogInterface, <span class="s0">int </span>i) {
+                                logoutProcess();
+                            }
+                        });
+                        builder.setNegativeButton(<span class="s3">&quot;Nooo&quot;</span>, <span class="s0">new </span>DialogInterface.OnClickListener() {
+                            @Override
+                            <span class="s0">public void </span>onClick(DialogInterface dialogInterface, <span class="s0">int </span>i) {
+                                TastyToast.makeText(getApplicationContext(), <span class="s3">&quot;Enjoy planning your trips.!&quot;</span>, TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+                                dialogInterface.cancel();
+                            }
+                        });
+                        AlertDialog alertDialog =builder.create();
+                        alertDialog.show();
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        <span class="s0">break</span>;
+                }
+                <span class="s0">return true</span>;
+            }
+        });
+<span class="s2">//        </span>
+    }
+
+    <span class="s0">public void </span>replaceFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container,fragment)
+                .commit();
+    }
+
+    <span class="s0">private void </span>gotoMapActivity() {
+        startActivity(<span class="s0">new </span>Intent(<span class="s0">this</span>, <a href="MapviewsActivity.java.html">MapviewsActivity</a>.<span class="s0">class</span>));
+    }
+
+
+    <span class="s0">private void </span>logoutProcess() {
+        SharedPreferences sharedPreferences = getSharedPreferences(<span class="s3">&quot;credentials&quot;</span>,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(<span class="s3">&quot;username&quot;</span>);
+        editor.remove(<span class="s3">&quot;password&quot;</span>);
+        editor.apply();
+        TastyToast.makeText(getApplicationContext(),<span class="s3">&quot;Logged Out..!&quot;</span>,TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+        startActivity(<span class="s0">new </span>Intent(getApplicationContext(),<a href="LoginActivity.java.html">LoginActivity</a>.<span class="s0">class</span>));
+        finish();
+    }
+
+
+}</pre>
+</body>
+</html>

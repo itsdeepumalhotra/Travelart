@@ -1,0 +1,184 @@
+<html>
+<head>
+<title>fragment_profile.xml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000; font-style: italic;}
+.s1 { color: #0000ff; font-weight: bold;}
+.s2 { color: #000000;}
+.s3 { color: #008000; font-weight: bold;}
+.s4 { color: #000080; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+fragment_profile.xml</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;?</span><span class="s1">xml version</span><span class="s3">=&quot;1.0&quot; </span><span class="s1">encoding</span><span class="s3">=&quot;utf-8&quot;</span><span class="s0">?&gt;</span>
+&lt;<span class="s4">RelativeLayout </span><span class="s1">xmlns:android</span><span class="s3">=&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="s1">xmlns:tools</span><span class="s3">=&quot;http://schemas.android.com/tools&quot;</span>
+    <span class="s1">android:layout_width</span><span class="s3">=&quot;match_parent&quot;</span>
+    <span class="s1">android:layout_height</span><span class="s3">=&quot;match_parent&quot;</span>
+    <span class="s1">android:background</span><span class="s3">=&quot;#FFFFFF&quot;</span>
+    <span class="s1">tools:context</span><span class="s3">=&quot;.fragments.ProfileFragment&quot;</span>&gt;
+
+    &lt;<span class="s4">ImageView</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/imageview_profile&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;120dp&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;120dp&quot;</span>
+        <span class="s1">android:src</span><span class="s3">=&quot;@drawable/person_icon&quot;</span>
+        <span class="s1">android:layout_centerHorizontal</span><span class="s3">=&quot;true&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;60dp&quot;</span>
+        /&gt;
+
+    &lt;<span class="s4">TextView</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/name&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_below</span><span class="s3">=&quot;@+id/imageview_profile&quot;</span>
+        <span class="s1">android:layout_centerHorizontal</span><span class="s3">=&quot;true&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;5dp&quot;</span>
+        <span class="s1">android:text</span><span class="s3">=&quot;TRAVELART&quot;</span>
+        <span class="s1">android:textColor</span><span class="s3">=&quot;#000&quot;</span>
+        <span class="s1">android:textSize</span><span class="s3">=&quot;18sp&quot;</span>
+        <span class="s1">android:textStyle</span><span class="s3">=&quot;bold&quot; </span>/&gt;
+
+    &lt;<span class="s4">TextView</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/desc&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_below</span><span class="s3">=&quot;@id/name&quot;</span>
+        <span class="s1">android:textSize</span><span class="s3">=&quot;25sp&quot;</span>
+        <span class="s1">android:fontFamily</span><span class="s3">=&quot;@font/aldrich&quot;</span>
+        <span class="s1">android:layout_centerHorizontal</span><span class="s3">=&quot;true&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;5dp&quot;</span>
+        <span class="s1">android:text</span><span class="s3">=&quot;Smart Travel Guide&quot; </span>/&gt;
+
+    &lt;<span class="s4">ImageView</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/image_design&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;100dp&quot;</span>
+        <span class="s1">android:layout_below</span><span class="s3">=&quot;@id/desc&quot;</span>
+        <span class="s1">android:src</span><span class="s3">=&quot;@drawable/screen_design&quot; </span>/&gt;
+
+
+    &lt;<span class="s4">LinearLayout</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/linear_layout_1&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_below</span><span class="s3">=&quot;@+id/image_design&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;30dp&quot;</span>
+        <span class="s1">android:orientation</span><span class="s3">=&quot;horizontal&quot;</span>&gt;
+
+        &lt;<span class="s4">ImageView</span>
+            <span class="s1">android:layout_width</span><span class="s3">=&quot;36dp&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s3">=&quot;36dp&quot;</span>
+            <span class="s1">android:layout_marginLeft</span><span class="s3">=&quot;70dp&quot; </span>/&gt;
+
+        &lt;<span class="s4">TextView</span>
+            <span class="s1">android:layout_width</span><span class="s3">=&quot;wrap_content&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+            <span class="s1">android:layout_marginLeft</span><span class="s3">=&quot;20dp&quot;</span>
+            <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;5dp&quot;</span>
+            <span class="s1">android:text</span><span class="s3">=&quot;My Profile&quot;</span>
+            <span class="s1">android:textColor</span><span class="s3">=&quot;#000&quot;</span>
+            <span class="s1">android:textSize</span><span class="s3">=&quot;18sp&quot; </span>/&gt;
+    &lt;/<span class="s4">LinearLayout</span>&gt;
+
+
+
+    &lt;<span class="s4">LinearLayout</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/linear_layout_2&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:orientation</span><span class="s3">=&quot;horizontal&quot;</span>
+        <span class="s1">android:layout_below</span><span class="s3">=&quot;@+id/linear_layout_1&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;30dp&quot;</span>
+        &gt;
+        &lt;<span class="s4">ImageView</span>
+            <span class="s1">android:layout_width</span><span class="s3">=&quot;36dp&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s3">=&quot;36dp&quot;</span>
+            <span class="s1">android:layout_marginLeft</span><span class="s3">=&quot;70dp&quot;</span>
+            /&gt;
+        &lt;<span class="s4">TextView</span>
+            <span class="s1">android:layout_width</span><span class="s3">=&quot;wrap_content&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+            <span class="s1">android:text</span><span class="s3">=&quot;Location&quot;</span>
+            <span class="s1">android:textSize</span><span class="s3">=&quot;18sp&quot;</span>
+            <span class="s1">android:textColor</span><span class="s3">=&quot;#000&quot;</span>
+            <span class="s1">android:layout_marginLeft</span><span class="s3">=&quot;20dp&quot;</span>
+            <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;5dp&quot;</span>
+            /&gt;
+    &lt;/<span class="s4">LinearLayout</span>&gt;
+
+
+    &lt;<span class="s4">LinearLayout</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/linear_layout_3&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:orientation</span><span class="s3">=&quot;horizontal&quot;</span>
+        <span class="s1">android:layout_below</span><span class="s3">=&quot;@+id/linear_layout_2&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;30dp&quot;</span>
+        &gt;
+        &lt;<span class="s4">ImageView</span>
+            <span class="s1">android:layout_width</span><span class="s3">=&quot;36dp&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s3">=&quot;36dp&quot;</span>
+            <span class="s1">android:src</span><span class="s3">=&quot;@drawable/ic_contact&quot;</span>
+            <span class="s1">android:layout_marginLeft</span><span class="s3">=&quot;70dp&quot;</span>
+            /&gt;
+        &lt;<span class="s4">TextView</span>
+            <span class="s1">android:layout_width</span><span class="s3">=&quot;wrap_content&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+            <span class="s1">android:text</span><span class="s3">=&quot;Contact us&quot;</span>
+            <span class="s1">android:textSize</span><span class="s3">=&quot;18sp&quot;</span>
+            <span class="s1">android:textColor</span><span class="s3">=&quot;#000&quot;</span>
+            <span class="s1">android:layout_marginLeft</span><span class="s3">=&quot;20dp&quot;</span>
+            <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;5dp&quot;</span>
+            /&gt;
+    &lt;/<span class="s4">LinearLayout</span>&gt;
+
+
+
+    &lt;<span class="s4">LinearLayout</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/linear_layout_4&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:orientation</span><span class="s3">=&quot;horizontal&quot;</span>
+        <span class="s1">android:layout_below</span><span class="s3">=&quot;@+id/linear_layout_3&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;30dp&quot;</span>
+        &gt;
+        &lt;<span class="s4">ImageView</span>
+            <span class="s1">android:layout_width</span><span class="s3">=&quot;36dp&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s3">=&quot;36dp&quot;</span>
+            <span class="s1">android:layout_marginLeft</span><span class="s3">=&quot;70dp&quot;</span>
+            /&gt;
+        &lt;<span class="s4">TextView</span>
+            <span class="s1">android:layout_width</span><span class="s3">=&quot;wrap_content&quot;</span>
+            <span class="s1">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+            <span class="s1">android:text</span><span class="s3">=&quot;Feedback&quot;</span>
+            <span class="s1">android:textSize</span><span class="s3">=&quot;18sp&quot;</span>
+            <span class="s1">android:textColor</span><span class="s3">=&quot;#000&quot;</span>
+            <span class="s1">android:layout_marginLeft</span><span class="s3">=&quot;20dp&quot;</span>
+            <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;5dp&quot;</span>
+            /&gt;
+    &lt;/<span class="s4">LinearLayout</span>&gt;
+
+
+
+    &lt;<span class="s4">LinearLayout</span>
+        <span class="s1">android:id</span><span class="s3">=&quot;@+id/linear_layout_5&quot;</span>
+        <span class="s1">android:layout_width</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:layout_height</span><span class="s3">=&quot;wrap_content&quot;</span>
+        <span class="s1">android:orientation</span><span class="s3">=&quot;horizontal&quot;</span>
+        <span class="s1">android:layout_below</span><span class="s3">=&quot;@+id/linear_layout_4&quot;</span>
+        <span class="s1">android:layout_marginTop</span><span class="s3">=&quot;30dp&quot;</span>
+        &gt;
+
+
+    &lt;/<span class="s4">LinearLayout</span>&gt;
+
+&lt;/<span class="s4">RelativeLayout</span>&gt;</pre>
+</body>
+</html>

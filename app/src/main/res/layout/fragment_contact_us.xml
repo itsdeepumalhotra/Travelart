@@ -5,10 +5,122 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ContactUsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:padding="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Developer's Contact"
+            android:textColor="#FF5722"
+            android:textSize="34sp"
+            android:fontFamily="@font/aldrich"/>
+        <View
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        <View
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Varsha Sharma"
+                android:padding="7dp"
+                android:textColor="#2196F3"
+                android:textSize="25sp"
+                android:fontFamily="@font/aclonica"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8607456683"
+                android:padding="7dp"
+                android:textColor="#00BCD4"
+                android:textSize="20dp"
+                android:fontFamily="@font/aclonica"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2520varsha@gmail.com"
+                android:padding="7dp"
+                android:textColor="#3F51B5"
+                android:textSize="20dp"
+                android:fontFamily="@font/aldrich"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deepanshu"
+                android:padding="7dp"
+                android:textColor="#4CAF50"
+                android:textSize="25sp"
+                android:fontFamily="@font/aclonica"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8950696934"
+                android:textColor="#8BC34A"
+                android:padding="7dp"
+                android:textSize="20dp"
+                android:fontFamily="@font/aclonica"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="deepanshumalhotra2017@gmail.com"
+                android:padding="7dp"
+                android:textColor="#009688"
+                android:textSize="20dp"
+                android:fontFamily="@font/aldrich"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    </LinearLayout>
 
 </FrameLayout>

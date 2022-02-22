@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
          username = findViewById(R.id.username);
          password = findViewById(R.id.password);
-         forgetBtn = findViewById(R.id.forgetPassword);
+//         forgetBtn = findViewById(R.id.forgetPassword);
          login = findViewById(R.id.login);
          gotoRegister = findViewById(R.id.registration);
 
@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
              }
          });
 
-         //TODO forgetBtn.setOnClickListener();
 
          gotoRegister.setOnClickListener(new View.OnClickListener() {
              @Override

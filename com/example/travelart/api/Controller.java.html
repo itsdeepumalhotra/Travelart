@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Controller.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Controller.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.travelart.api;
+
+<span class="s0">import </span>retrofit2.Retrofit;
+<span class="s0">import </span>retrofit2.converter.gson.GsonConverterFactory;
+
+<span class="s0">public class   </span>Controller {
+
+     <span class="s0">private static final </span>String url = <span class="s2">&quot;http://192.168.100.11/api/&quot;</span>;
+     <span class="s0">private static </span>Controller clientObject;
+     <span class="s0">private static </span>Retrofit retrofit;
+
+    <span class="s0">public </span>Controller() {
+        retrofit = <span class="s0">new </span>Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
+
+    <span class="s3">//returns clientObject, if not made thn first it will create it then return it</span>
+    <span class="s0">public static synchronized </span>Controller getInstance() {
+        <span class="s0">if </span>(clientObject == <span class="s0">null</span>)
+            clientObject = <span class="s0">new </span>Controller();
+        <span class="s0">return </span>clientObject;
+    }
+
+       <span class="s0">public <a href="ApiSet.java.html">ApiSet</a> </span>getApi(){
+
+        <span class="s0">return </span>retrofit.create(<a href="ApiSet.java.html">ApiSet</a>.<span class="s0">class</span>);
+        }
+
+}
+</pre>
+</body>
+</html>

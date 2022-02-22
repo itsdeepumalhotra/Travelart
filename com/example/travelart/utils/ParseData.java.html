@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>ParseData.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #808080; font-weight: bold; font-style: italic;}
+.s4 { color: #008000; font-weight: bold;}
+.s5 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ParseData.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.travelart.utils;
+
+<span class="s0">import </span>org.json.JSONArray;
+<span class="s0">import </span>org.json.JSONException;
+<span class="s0">import </span>org.json.JSONObject;
+
+<span class="s0">import </span>java.util.ArrayList;
+
+<span class="s0">public class </span>ParseData {
+
+    <span class="s2">/**</span>
+     <span class="s2">* ArrayList to store parsed data of all venues</span>
+     <span class="s2">*/</span>
+
+    <span class="s0">private </span>ArrayList&lt;Venue&gt; venueList = <span class="s0">new </span>ArrayList&lt;Venue&gt;();
+
+    <span class="s2">/**</span>
+     <span class="s2">* Constructor to Parse the initial data and then store it into ArrayList</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">data</span>
+     <span class="s2">*/</span>
+
+    <span class="s0">public </span>ParseData(JSONObject data){
+        <span class="s0">try</span>{
+            JSONArray venueArray = data.getJSONArray(<span class="s4">&quot;results&quot;</span>);
+
+            <span class="s0">for</span>(<span class="s0">int </span>i = <span class="s5">0</span>; i &lt; venueArray.length(); i++){
+                JSONObject eachVenue = venueArray.getJSONObject(i);
+                <a href="Venue.java.html">Venue</a> venue = <span class="s0">new <a href="Venue.java.html">Venue</a></span>(eachVenue);
+                venueList.add(venue);
+            }
+        }
+        <span class="s0">catch </span>(JSONException jsonException){
+            jsonException.printStackTrace();
+        }
+    }
+
+    <span class="s0">public </span>ArrayList&lt;Venue&gt; getVenueList(){
+        <span class="s0">return </span>venueList;
+    }
+
+}
+</pre>
+</body>
+</html>

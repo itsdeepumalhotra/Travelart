@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>VenueAdapter.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #808080; font-weight: bold; font-style: italic;}
+.s4 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+VenueAdapter.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.travelart.adapters;
+
+<span class="s0">import </span>android.util.Pair;
+<span class="s0">import </span>android.view.LayoutInflater;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.view.ViewGroup;
+<span class="s0">import </span>android.widget.ImageView;
+<span class="s0">import </span>android.widget.TextView;
+
+<span class="s0">import </span>androidx.recyclerview.widget.RecyclerView;
+
+<span class="s0">import </span>com.example.travelart.R;
+
+<span class="s0">import </span>java.util.ArrayList;
+
+<span class="s0">public class </span>VenueAdapter <span class="s0">extends </span>RecyclerView.Adapter&lt;VenueAdapter.ViewHolder&gt;{
+
+        <span class="s0">private final </span>ArrayList&lt;Pair&lt;String, Integer&gt;&gt; categoryList;
+        <span class="s0">private static </span>ClickListener clickListener;
+
+
+
+    <span class="s2">/**</span>
+         <span class="s2">* Provide a reference to the type of views that you are using</span>
+         <span class="s2">* (custom ViewHolder).</span>
+         <span class="s2">*/</span>
+    <span class="s0">public static class </span>ViewHolder <span class="s0">extends </span>RecyclerView.ViewHolder <span class="s0">implements </span>View.OnClickListener{
+        <span class="s0">private final </span>TextView tvVenueCategory;
+        <span class="s0">private final </span>ImageView ivVenueCategoryImage;
+
+        <span class="s0">public </span>ViewHolder(View view) {
+                <span class="s0">super</span>(view);
+                tvVenueCategory = (TextView) view.findViewById(R.id.venueCategory);
+                ivVenueCategoryImage = (ImageView) view.findViewById(R.id.venueCategoryImage);
+
+                <span class="s2">// Define click listener for the ViewHolder's View</span>
+                view.setOnClickListener(<span class="s0">this</span>);
+
+            }
+
+            @Override
+            <span class="s0">public void </span>onClick(View view) {
+                clickListener.onItemClick(getAdapterPosition(), view);
+            }
+
+            <span class="s0">public </span>TextView getTvVenueCategory() {
+                <span class="s0">return </span>tvVenueCategory;
+            }
+        <span class="s0">public </span>ImageView getIvVenueCategoryImage() {
+            <span class="s0">return </span>ivVenueCategoryImage;
+        }
+
+
+        }
+
+        <span class="s2">///////////////////////////////////////////</span>
+        <span class="s0">public interface </span>ClickListener{
+            <span class="s0">void </span>onItemClick(<span class="s0">int </span>position, View view);
+        }
+
+        <span class="s0">public void </span>setOnItemClickListener(ClickListener clickListener){
+            VenueAdapter.clickListener = clickListener;
+        }
+        <span class="s2">///////////////////////////////////////////////</span>
+
+        <span class="s2">/**</span>
+         <span class="s2">* Initialize the dataset of the Adapter.</span>
+         <span class="s2">*</span>
+         <span class="s2">* </span><span class="s3">@param </span><span class="s2">dataSet ArrayList</span><span class="s4">&lt;Pair&lt;String</span><span class="s2">, String&gt;&gt; containing the data to populate views to be used</span>
+         <span class="s2">* by RecyclerView.</span>
+         <span class="s2">*/</span>
+        <span class="s0">public </span>VenueAdapter(ArrayList&lt;Pair&lt;String, Integer&gt;&gt; dataSet) {
+            categoryList = dataSet;
+        }
+
+        <span class="s2">// Create new views (invoked by the layout manager)</span>
+        @Override
+        <span class="s0">public </span>ViewHolder onCreateViewHolder(ViewGroup parent, <span class="s0">int </span>viewType) {
+            <span class="s2">// Create a new view, which defines the UI of the list item</span>
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.venue_row_item, parent, <span class="s0">false</span>);
+
+            <span class="s0">return new </span>ViewHolder(view);
+        }
+
+        <span class="s2">// Replace the contents of a view (invoked by the layout manager)</span>
+        @Override
+        <span class="s0">public void </span>onBindViewHolder(ViewHolder viewHolder, <span class="s0">final int </span>position) {
+
+            <span class="s2">// Get element from your dataset at this position and replace the</span>
+            <span class="s2">// contents of the view with that element</span>
+            viewHolder.getTvVenueCategory().setText(categoryList.get(position).first);      <span class="s2">// for category name eg: food, hospital</span>
+            viewHolder.getIvVenueCategoryImage().setImageResource(categoryList.get(position).second); <span class="s2">// for category image eg: food image</span>
+
+        }
+
+        <span class="s2">// Return the size of your dataset (invoked by the layout manager)</span>
+        @Override
+        <span class="s0">public int </span>getItemCount() {
+            <span class="s0">return </span>categoryList.size();
+        }
+    }
+
+</pre>
+</body>
+</html>

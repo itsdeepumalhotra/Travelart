@@ -24,11 +24,11 @@
             android:textSize="34sp"
             android:textStyle="bold" />
 
-
         <ImageView
             android:id="@+id/mapIcon"
             android:layout_weight="0.2"
             android:layout_width="56dp"
+            android:src="@drawable/mapicon"
             android:layout_height="56dp" />
     </LinearLayout>
 

@@ -89,19 +89,19 @@
     </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/forgetPassword"
-        android:background="#F5F5F5"
-        android:layout_gravity="right"
-        android:elevation="0dp"
-        android:textColor="#30475E"
-        android:textStyle="bold"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:padding="10dp"
-        android:text="Forget Password?"/>
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/forgetPassword"-->
+<!--        android:background="#F5F5F5"-->
+<!--        android:layout_gravity="right"-->
+<!--        android:elevation="0dp"-->
+<!--        android:textColor="#30475E"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="Forget Password?"/>-->
 
     <Button
         android:layout_width="match_parent"

@@ -69,25 +69,18 @@ public class DisplayVenuesFragment extends Fragment {
 
 
 
-//        mapIcon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-////                Bundle bundle = new Bundle();
-////                bundle.putSerializable("VENUE_LIST",venueArrayList);
-////                FragmentManager fragmentManager = getFragmentManager();
-////                fragmentManager.beginTransaction().replace(R.id.fragment_container, Map.class, bundle).addToBackStack(null).commit();
-////
-//
-//                Intent intent = new Intent(getContext(), MapviewsActivity.class);
-////                passing venue list
-//                intent.putExtra("VENUE_LIST", venueArrayList);
-//                //
-//                startActivity(intent);
-//                TastyToast.makeText(getContext(), "Goto MAP", TastyToast.LENGTH_LONG, TastyToast.CONFUSING);
-//            }
-//
-//        });
+        mapIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                            Intent intent = new Intent(getContext(), MapsActivity.class);
+                            intent.putExtra("VENUE_LIST", venueArrayList);
+
+                            startActivity(intent);
+                            TastyToast.makeText(getContext(), "Goto MAP", TastyToast.LENGTH_LONG, TastyToast.CONFUSING);
+
+                        }
+
+        });
 
 
         return view;
@@ -131,16 +124,16 @@ public class DisplayVenuesFragment extends Fragment {
                         adapter = new CustomAdapterForEachPlace(venueArrayList);
                         venues.setLayoutManager(new LinearLayoutManager(getContext()));
                         venues.setAdapter(adapter);
-                        adapter.setOnItemClickListener(
-                                (position, view) -> {
-                                    Intent intent = new Intent(getContext(), MapsActivity.class);
-                                    intent.putExtra("VENUE_LIST", venueArrayList);
-
-                                    startActivity(intent);
-                                    TastyToast.makeText(getContext(), "Goto MAP", TastyToast.LENGTH_LONG, TastyToast.CONFUSING);
-
-                                }
-                        );
+//                        adapter.setOnItemClickListener(
+//                                (position, view) -> {
+//                                    Intent intent = new Intent(getContext(), MapsActivity.class);
+//                                    intent.putExtra("VENUE_LIST", venueArrayList);
+//
+//                                    startActivity(intent);
+//                                    TastyToast.makeText(getContext(), "Goto MAP", TastyToast.LENGTH_LONG, TastyToast.CONFUSING);
+//
+//                                }
+//                        );
 //
 //
 
